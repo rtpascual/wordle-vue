@@ -3,18 +3,19 @@ import Header from './components/Header.vue'
 import Keyboard from './components/keyboard/Keyboard.vue';
 import Grid from './components/grid/Grid.vue';
 import { useBoardStore } from './stores/board';
+import { onMounted } from 'vue';
 
 const boardStore = useBoardStore();
 
 function keyPressed(key: string) {
   boardStore.keyPressed(key);
-}
+};
 
-// Global event listener for keyboard presses as an alternative to virtual keyboard
-window.addEventListener('keyup', (e) => {
-  keyPressed(e.key.toLowerCase());
-})
-
+onMounted(() => {
+  window.addEventListener('keyup', (e) => {
+    keyPressed(e.key.toLowerCase());
+  })
+});
 </script>
 
 <template>

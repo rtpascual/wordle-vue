@@ -6,10 +6,10 @@ const boardStore = useBoardStore();
 const props = defineProps<{
     letter: string
 }>();
-    
+
 function keyPressed(key: string) {
     boardStore.keyPressed(key);
-}
+};
 </script>
 
 <template>

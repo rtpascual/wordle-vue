@@ -8,8 +8,8 @@ const layout = ['q w e r t y u i o p',
 </script>
 
 <template>
-<div class="flex flex-row" v-for="row in layout">
-    <div v-for="letter in row">
+<div class="flex flex-row" v-for="(row, index) in layout" :key="index">
+    <div v-for="(letter, index) in row" :key="index">
         <KeyboardKey :letter="letter"/>
     </div>
 </div>

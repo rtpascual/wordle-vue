@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBoardStore } from '@/stores/board';
-import WordRow from './WordRow.vue';
+import WordRow from './WordGridRow.vue';
 
 const boardStore = useBoardStore();
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useBoardStore } from '@/stores/board';
-import LetterBox from './LetterBox.vue';
+import LetterBox from './WordGridRowBox.vue';
 
 const boardStore = useBoardStore();
 

@@ -7,7 +7,7 @@ export enum letterCorrectness {
 }
 
 export const useBoardStore = defineStore({
-    id: "board",
+    id: "board-store",
     state: () => ({
         guesses: [''],
         currentGuess: 0,
@@ -15,8 +15,10 @@ export const useBoardStore = defineStore({
         wordLength: 5,
         maxGuesses: 6,
     }),
+
     getters: {
     },
+
     actions: {
         keyPressed(key: string) {
             // Enter is pressed
@@ -46,5 +48,25 @@ export const useBoardStore = defineStore({
                     this.guesses[this.currentGuess] += key;
             }
         },
+
+        submitGuess(guess: string, solution: string): letterCorrectness[] {
+            const guessArray = guess.split('');
+            const solutionArray = guess.split('');
+            const result: letterCorrectness[] = [];
+
+            guessArray.forEach((letter, index) => {
+                if (letter === solutionArray[index]) {
+                    result.push(letterCorrectness.InPosition)
+                }
+                else if (solutionArray.includes(letter)) {
+                    result.push(letterCorrectness.InWord)
+                }
+                else {
+                    result.push(letterCorrectness.NotInWord)
+                }
+            })
+
+            return result;
+        }
     },
 });

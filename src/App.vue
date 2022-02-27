@@ -2,7 +2,7 @@
 import TheHeader from './components/TheHeader.vue'
 import VirtualKeyboard from './components/VirtualKeyboard.vue';
 import WordGrid from './components/WordGrid.vue';
-import { useBoardStore } from './stores/board';
+import { useBoardStore } from './stores/BoardStore';
 import { onMounted } from 'vue';
 
 const boardStore = useBoardStore();

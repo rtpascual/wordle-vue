@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Header from './components/Header.vue'
 import Keyboard from './components/keyboard/Keyboard.vue';
-import Grid from './components/grid/Grid.vue';
+import Grid from './components/grid/WordGrid.vue';
 import { useBoardStore } from './stores/board';
 import { onMounted } from 'vue';
 

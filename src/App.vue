@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import Header from './components/TheHeader.vue'
-import Keyboard from './components/Keyboard.vue';
-import Grid from './components/WordGrid.vue';
+import TheHeader from './components/TheHeader.vue'
+import VirtualKeyboard from './components/VirtualKeyboard.vue';
+import WordGrid from './components/WordGrid.vue';
 import { useBoardStore } from './stores/board';
 import { onMounted } from 'vue';
 
@@ -20,9 +20,9 @@ onMounted(() => {
 
 <template>
 <main class="flex flex-col justify-between content-center items-center select-none h-screen">
-  <Header />
-  <Grid />
-  <Keyboard />
+  <TheHeader />
+  <WordGrid />
+  <VirtualKeyboard />
 </main>
 </template>
 

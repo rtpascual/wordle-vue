@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import KeyboardKey from './KeyboardKey.vue';
+import KeyboardKey from './VirtualKeyboardKey.vue';
 
 // Layout of keys for keyboard
 const layout = ['q w e r t y u i o p',

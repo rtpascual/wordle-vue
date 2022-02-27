@@ -37,9 +37,13 @@ export const useBoardStore = defineStore({
                 return;
             }
 
-            // Add letter to current guess
-            if (this.currentGuess < this.maxGuesses && this.guesses[this.currentGuess].length < this.wordLength) {
-                this.guesses[this.currentGuess] += key;
+            // Letter is pressed, add letter to current guess
+            if (key.length === 1 &&
+                key.charCodeAt(0) >= 97 &&
+                key.charCodeAt(0) <= 122 &&
+                this.currentGuess < this.maxGuesses &&
+                this.guesses[this.currentGuess].length < this.wordLength) {
+                    this.guesses[this.currentGuess] += key;
             }
         },
     },

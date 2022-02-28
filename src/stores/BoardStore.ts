@@ -6,15 +6,31 @@ export enum letterCorrectness {
     InPosition
 }
 
+export type RootState = {
+    guesses: string[];
+    guessStates: letterCorrectness[][];
+    currentGuess: number;
+    solution: string;
+    wordLength: number;
+    maxGuesses: number;
+    inPositionLetters: string[];
+    inWordLetters: string[];
+    notInWordLetters: string[];
+}
+
 export const useBoardStore = defineStore({
     id: "board-store",
     state: () => ({
         guesses: [''],
+        guessStates: [],
         currentGuess: 0,
         solution: 'point',
         wordLength: 5,
         maxGuesses: 6,
-    }),
+        inPositionLetters: [],
+        inWordLetters: [],
+        notInWordLetters: [],
+    } as unknown as RootState),
 
     getters: {
     },
@@ -24,7 +40,7 @@ export const useBoardStore = defineStore({
             // Enter is pressed
             if (key === "enter") {
                 if (this.guesses[this.currentGuess].length === this.wordLength && this.guesses.length < this.maxGuesses) {
-                    // TODO: add logic to check if guess matches solution
+                    this.submitGuess(this.guesses[this.currentGuess]);
                     this.guesses.push('');
                     this.currentGuess++;
                 }
@@ -48,24 +64,38 @@ export const useBoardStore = defineStore({
                     this.guesses[this.currentGuess] += key;
             }
         },
-
-        submitGuess(guess: string, solution: string): letterCorrectness[] {
-            const guessArray = guess.split('');
-            const solutionArray = guess.split('');
+        
+        submitGuess(guess?: string): letterCorrectness[] {
+            const guessArray = guess ? guess.split('') : [''];
+            const solutionArray = this.solution.split('');
             const result: letterCorrectness[] = [];
+            
+            if (!guess) {
+                return result;
+            }
 
             guessArray.forEach((letter, index) => {
                 if (letter === solutionArray[index]) {
-                    result.push(letterCorrectness.InPosition)
+                    if (!this.inPositionLetters.includes(letter)) {
+                        this.inPositionLetters.push(letter);
+                    }
+                    result.push(letterCorrectness.InPosition);
                 }
                 else if (solutionArray.includes(letter)) {
-                    result.push(letterCorrectness.InWord)
+                    if (!this.inWordLetters.includes(letter)) {
+                        this.inWordLetters.push(letter);
+                    }
+                    result.push(letterCorrectness.InWord);
                 }
                 else {
-                    result.push(letterCorrectness.NotInWord)
+                    if (!this.notInWordLetters.includes(letter)) {
+                        this.notInWordLetters.push(letter);
+                    }
+                    result.push(letterCorrectness.NotInWord);
                 }
-            })
-
+            });
+            
+            this.guessStates.push(result);
             return result;
         }
     },

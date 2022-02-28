@@ -8,6 +8,6 @@ const boardStore = useBoardStore();
 
 <template>
 <div class="flex flex-auto flex-col gap-1 place-content-center">
-    <WordRow v-for="numGuess in boardStore.maxGuesses" :word="boardStore.guesses[numGuess - 1]" :key="numGuess"/>
+    <WordRow v-for="(numGuess, index) in boardStore.maxGuesses" :word="boardStore.guesses[index]" :correctness-array="boardStore.guessStates[index]" :key="index"/>
 </div>
 </template>

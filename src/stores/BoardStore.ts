@@ -13,6 +13,7 @@ export type RootState = {
     solution: string;
     wordLength: number;
     maxGuesses: number;
+    letterStates: {[letter: string] : letterCorrectness};
     inPositionLetters: string[];
     inWordLetters: string[];
     notInWordLetters: string[];
@@ -27,9 +28,7 @@ export const useBoardStore = defineStore({
         solution: 'point',
         wordLength: 5,
         maxGuesses: 6,
-        inPositionLetters: [],
-        inWordLetters: [],
-        notInWordLetters: [],
+        letterStates: {}
     } as unknown as RootState),
 
     getters: {
@@ -75,21 +74,23 @@ export const useBoardStore = defineStore({
             }
 
             guessArray.forEach((letter, index) => {
+                console.log(letter)
+                console.log(this.letterStates[letter])
                 if (letter === solutionArray[index]) {
-                    if (!this.inPositionLetters.includes(letter)) {
-                        this.inPositionLetters.push(letter);
+                    if ((this.letterStates[letter] ?? 0) <= letterCorrectness.InPosition) {
+                        this.letterStates[letter] = letterCorrectness.InPosition;
                     }
                     result.push(letterCorrectness.InPosition);
                 }
                 else if (solutionArray.includes(letter)) {
-                    if (!this.inWordLetters.includes(letter)) {
-                        this.inWordLetters.push(letter);
+                    if ((this.letterStates[letter] ?? 0) <= letterCorrectness.InWord) {
+                        this.letterStates[letter] = letterCorrectness.InWord;
                     }
                     result.push(letterCorrectness.InWord);
                 }
                 else {
-                    if (!this.notInWordLetters.includes(letter)) {
-                        this.notInWordLetters.push(letter);
+                    if (this.letterStates[letter] ?? -1 < letterCorrectness.NotInWord) {
+                        this.letterStates[letter] = letterCorrectness.NotInWord;
                     }
                     result.push(letterCorrectness.NotInWord);
                 }

@@ -74,8 +74,6 @@ export const useBoardStore = defineStore({
             }
 
             guessArray.forEach((letter, index) => {
-                console.log(letter)
-                console.log(this.letterStates[letter])
                 if (letter === solutionArray[index]) {
                     if ((this.letterStates[letter] ?? 0) <= letterCorrectness.InPosition) {
                         this.letterStates[letter] = letterCorrectness.InPosition;

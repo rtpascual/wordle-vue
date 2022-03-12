@@ -13,13 +13,13 @@ const boxStyles = {
 };
 
 function getBoxStyle(state?: letterCorrectness): string {
-  return state == null ? "" : boxStyles[state];
+  return state == null ? "border-gray-300" : boxStyles[state];
 }
 </script>
 
 <template>
   <div
-    class="flex flex-1 place-content-center place-items-center w-20 h-20 border-gray-300 border-solid border-2 uppercase font-bold text-3xl"
+    class="flex flex-1 place-content-center place-items-center w-20 h-20 border-solid border-2 uppercase font-bold text-3xl"
     :class="getBoxStyle(props.correctness)"
   >
     {{ props.letter }}

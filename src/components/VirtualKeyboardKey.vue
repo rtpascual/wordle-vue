@@ -15,7 +15,7 @@ const keyStyles = {
 };
 
 function getKeyStyle(state?: letterCorrectness): string {
-  return state == null ? "" : keyStyles[state];
+  return state == null ? "bg-gray-300" : keyStyles[state];
 }
 
 function keyPressed(key: string) {
@@ -25,7 +25,7 @@ function keyPressed(key: string) {
 
 <template>
   <div
-    class="flex flex-1 place-content-center place-items-center pl-3 pr-3 h-14 m-1 uppercase cursor-pointer bg-gray-300 rounded-lg"
+    class="flex flex-1 place-content-center place-items-center pl-3 pr-3 h-14 m-1 uppercase cursor-pointer rounded-lg"
     :class="getKeyStyle(props.correctness)"
     @click="keyPressed(props.letter)"
   >

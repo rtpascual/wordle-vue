@@ -1,6 +1,6 @@
 # wordle-vue
 
-Wordle designed with Vue 3 + Pinia
+Wordle designed with Vue 3 + Pinia. No word bank, the word is "point".
 
 ## Recommended IDE Setup
 

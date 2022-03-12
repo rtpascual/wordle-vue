@@ -1,6 +1,8 @@
 # wordle-vue
 
-Wordle designed with Vue 3 + Pinia. No word bank, the word is "point".
+Wordle designed with Vue 3 + Pinia for state management + Tailwind CSS.
+
+No word bank, the word is "point".
 
 ## Recommended IDE Setup
 
